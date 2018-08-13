@@ -29,6 +29,24 @@ import UIKit
 /// The toggle torch button.
 @IBDesignable
 public final class ToggleTorchButton: UIButton {
+    
+    convenience init(image:UIImage?) {
+        self.init()
+        setImage(image, for: .normal)
+        imageView?.contentMode = .scaleAspectFit
+    }
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
+public final class __ToggleTorchButton: UIButton {
   @IBInspectable var edgeColor: UIColor = UIColor.white {
     didSet {
       setNeedsDisplay()

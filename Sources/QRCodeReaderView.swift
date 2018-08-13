@@ -64,7 +64,7 @@ final public class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
   }()
 
   public lazy var toggleTorchButton: UIButton? = {
-    let ttb = ToggleTorchButton()
+    let ttb = ToggleTorchButton(image: UIImage(named: "icon-flash"))
 
     ttb.translatesAutoresizingMaskIntoConstraints = false
 
@@ -89,13 +89,21 @@ final public class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
     let views = ["cv": cameraView, "ov": ov, "cb": cb, "scb": scb, "ttb": ttb]
 
     addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[cv]|", options: [], metrics: nil, views: views))
+    addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[cv]|", options: [], metrics: nil, views: views))
 
     if showCancelButton {
-      addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[cv][cb(40)]|", options: [], metrics: nil, views: views))
-      addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[cb]-|", options: [], metrics: nil, views: views))
+        
+        cancelButton?.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        cancelButton?.setTitleColor(UIColor.black, for: UIControlState.normal)
+        cancelButton?.layer.masksToBounds = true
+        cancelButton?.clipsToBounds = true
+        cancelButton?.layer.cornerRadius = 12
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[cb(60)]-20-|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[cb]-20-|", options: [], metrics: nil, views: views))
     }
     else {
-      addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[cv]|", options: [], metrics: nil, views: views))
+      //addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[cv]|", options: [], metrics: nil, views: views))
     }
 
     if showSwitchCameraButton {

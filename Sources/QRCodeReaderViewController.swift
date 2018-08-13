@@ -153,6 +153,7 @@ public class QRCodeReaderViewController: UIViewController {
     readerView.displayable.switchCameraButton?.addTarget(self, action: #selector(switchCameraAction), for: .touchUpInside)
     readerView.displayable.toggleTorchButton?.addTarget(self, action: #selector(toggleTorchAction), for: .touchUpInside)
     readerView.displayable.cancelButton?.setTitle(cancelButtonTitle, for: .normal)
+    readerView.displayable.cancelButton?.titleLabel?.font = UIFont(name: "SFProText-Regular", size: 21)
     readerView.displayable.cancelButton?.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
 
     // Setup constraints
