@@ -94,7 +94,7 @@ final public class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
     if showCancelButton {
         
         cancelButton?.backgroundColor = UIColor.white.withAlphaComponent(0.8)
-        cancelButton?.setTitleColor(UIColor.black, for: UIControlState.normal)
+        cancelButton?.setTitleColor(UIColor.black, for: UIControl.State.normal)
         cancelButton?.layer.masksToBounds = true
         cancelButton?.clipsToBounds = true
         cancelButton?.layer.cornerRadius = 12
@@ -116,7 +116,7 @@ final public class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
       addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[ttb(70)]", options: [], metrics: nil, views: views))
     }
 
-    for attribute in Array<NSLayoutAttribute>([.left, .top, .right, .bottom]) {
+    for attribute in Array<NSLayoutConstraint.Attribute>([.left, .top, .right, .bottom]) {
       addConstraint(NSLayoutConstraint(item: ov, attribute: attribute, relatedBy: .equal, toItem: cameraView, attribute: attribute, multiplier: 1, constant: 0))
     }
   }
@@ -170,7 +170,7 @@ final public class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
   // MARK: - Convenience Methods
 
   private func addComponents() {
-    NotificationCenter.default.addObserver(self, selector: #selector(self.setNeedsUpdateOrientation), name: .UIDeviceOrientationDidChange, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(self.setNeedsUpdateOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
 
     addSubview(cameraView)
 
